@@ -1,0 +1,336 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Parikshit Explorer</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Poppins", Arial, sans-serif;
+                background: radial-gradient(circle at top, #101631, #050710);
+                color: #f2f2f2;
+                line-height: 1.6;
+            }
+
+            /* Navigation Bar */
+            
+                nav {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 15px 50px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; 
+            top: 0;
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+        }
+            
+            .logo {
+                font-size: 24px;
+                font-weight: bold;
+                color: #00d4ff;
+            }
+
+            nav ul {
+                display: flex;
+                align-content: end;
+                gap: 20px;
+                list-style: none;
+            }
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                padding: 10px 20px;
+                transition: all 0.3s;
+            }
+            nav a:hover {
+                color: #00d4ff;
+                background-color: rgba(0, 212, 255, 0.1);
+                border-radius: 5px;
+            }
+        
+            .main {
+                height: 90vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .main-content {
+                max-width: 750px;
+            }
+            
+            .main h1 {
+                font-size: 56px;
+                margin-bottom: 20px;
+                color: #00d4ff;
+            }
+
+            .main p {
+                font-size: 19px;
+                color: #cfcfcf;
+                margin-bottom: 30px;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 12px 35px;
+                background-color: #00d4ff;
+                color: #0a0e27;
+                border-radius: 25px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+
+            .btn:hover {
+                background-color: #00a8cc;
+                
+                box-shadow: 0 6px 15px rgba(0, 212, 255, 0.3);
+            }
+
+            /* About Section */
+            .about {
+                height: 70vh;
+                padding: 80px 40px;
+                text-align: center;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            
+            .about h2 {
+                font-size: 36px;
+                color: #00d4ff;
+                margin-bottom: 20px;
+            }
+
+            .about p {
+                font-size: 17px;
+                color: #ccc;
+            }
+
+            .missions {
+                padding: 80px 50px;
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            .missions h2 {
+                text-align: center;
+                font-size: 40px;
+                margin-bottom: 50px;
+                color: #00d4ff;
+            }
+
+            .card-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .card {
+                background-color: rgba(255, 255, 255, 0.1);
+                padding: 30px;
+                border-radius: 15px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: center;
+                transition: all 0.3s;
+            }
+
+            .card:hover {
+                background-color: rgba(0, 212, 255, 0.1); 
+                transform: translateY(-5px); 
+                box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
+                border-color: #00d4ff; 
+            }
+
+            .card-icon {
+                font-size: 50px;
+                margin-bottom: 20px;
+            }
+
+            .card h3 {
+                font-size: 24px;
+                margin-bottom: 15px;
+                color: #00d4ff;
+            }
+
+            .card p {
+                color: #ccc;
+                line-height: 1.6;
+            }
+            
+        .planets {
+            padding: 80px 50px;
+        }
+
+        .planets h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+            color: #00d4ff;
+        }
+
+        .planet-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .planet-item {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .planet-item:hover {
+            transform: scale(1.1);
+        }
+
+        .planet-sphere {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            
+        }
+
+        
+
+        .CubeSat { background: #aaa; }
+        .Cansat { background: #ffcc66; }
+        .PAGOS { background: #4a90e2; }
+        
+
+        .planet-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+
+            /* Footer */
+            footer {
+                text-align: center;
+                padding: 25px 0;
+                background-color: rgba(0, 0, 0, 0.6);
+                font-size: 14px;
+                color: #bbb;
+                letter-spacing: 0.5px;
+            }
+
+            footer span {
+                color: #00d4ff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">Parikshit Explorer</div>
+            <ul>
+                <li><a href="https://parikshitspace.in">Home</a></li>
+                <li><a href="https://parikshitspace.in">About</a></li>
+                <li><a href="https://parikshitspace.in">Missions</a></li>
+                <li><a href="https://parikshitspace.in">Team</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="main">
+            <div class="main-content">
+                
+
+                <h1>Discover Our Journey Beyond Earth</h1>
+                <p>Parikshit is not just a student project — it’s a story of passion, innovation, and curiosity.  
+                Explore how our team brings space closer to everyone.</p>
+                <a href="https://parikshitspace.in" class="btn">Start Exploring</a>
+                
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <h2>Welcome to Parikshit</h2>
+            <p>We are a student satellite team from Manipal Institute of Technology, India — building a 2U-class nanosatellite designed and developed entirely in-house.  
+            Since 2013, Parikshit has been the platform for young minds to explore, innovate, and create for space.</p>
+        </section>
+
+        <!-- Missions Section -->
+        <section class="missions">
+            <h2>Our Subsystems</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>ADCS</h3>
+                    <p>Determines and controls the satellite’s orientation in orbit with precision and stability.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📡</div>
+                    <h3>Comms</h3>
+                    <p>Handles communication between the satellite and ground station for data exchange.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔋</div>
+                    <h3>EPS</h3>
+                    <p>Manages power generation, storage, and distribution for all satellite systems.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📟</div>
+                    <h3>ODHS</h3>
+                    <p>The satellite’s onboard brain — processes commands and manages subsystem interactions.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛰️</div>
+                    <h3>Payload</h3>
+                    <p>Houses the mission’s main instruments and sensors for scientific and educational goals.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>STMS</h3>
+                    <p>Responsible for structural strength and thermal balance under space conditions.</p>
+                </div>
+            </div>
+
+
+        </section>
+        <section class="planets" id="planets">
+        <h2>PROJECTS</h2>
+        <div class="planet-grid">
+            <div class="planet-item">
+                <div class="planet-sphere CubeSat"></div>
+                <div class="planet-name">CubeSat Development</div>
+            </div>
+            <div class="planet-item">
+                <div class="planet-sphere Cansat"></div>
+                <div class="planet-name">Cansat Development</div>
+            </div>
+            <div class="planet-item">
+                <div class="planet-sphere PAGOS"></div>
+                <div class="planet-name">PAGOS (Parikshit Ground Station)</div>
+            </div>
+        
+        </div>
+    </section>
+
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 <span>Built by</span> — Moksha</p>
+        </footer>
+    </body>
+    </html>
