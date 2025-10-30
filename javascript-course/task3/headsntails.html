@@ -4,54 +4,70 @@
     <title>Coin Flip</title>
     <style>
         body {
-            font-family: monospace;
+            font-family: 'Trebuchet MS', monospace;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #AAAAAA;  
+            background: linear-gradient(135deg, #74ABE2, #5563DE);
+            color: #222;
         }
 
         .box {
-            background-color: #FFFFFF;
-            padding: 20px;
-            border: 2px solid #000000;
+            background-color: #FFFFFFEE;
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #333;
             text-align: center;
-            width: 300px;
+            width: 320px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
 
         h1 {
-            color: #000000;
-            margin-bottom: 10px;
+            color: #222;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #999;
         }
 
         .coin {
-            width: 80px;
-            height: 80px;
-            margin: 15px auto;
-            background-color: yellow;
+            width: 90px;
+            height: 90px;
+            margin: 20px auto;
+            background: radial-gradient(circle, gold 30%, #e5b300 90%);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
+            font-size: 36px;
             font-weight: bold;
             color: #333;
-            border: 3px solid #000000;
+            border: 3px solid #222;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+           
         }
 
+        
         button {
-            padding: 8px 15px;
-            font-size: 14px;
-            margin: 5px;
-            border: 1px solid #000000;
+            padding: 10px 18px;
+            font-size: 15px;
+            margin: 6px;
+            border-radius: 8px;
+            border: none;
             cursor: pointer;
-            background-color: #CCCCCC;
+            background: linear-gradient(145deg, #4CAF50, #2E7D32);
+            color: white;
+            transition: 0.3s;
+        }
+
+        #tailsBtn {
+            background: linear-gradient(145deg, #FF5252, #C62828);
         }
 
         button:hover {
-            background-color: #E0E0E0;
+            transform: scale(1.05);
+            opacity: 0.9;
         }
 
         button:disabled {
@@ -59,23 +75,34 @@
         }
 
         .message {
-            min-height: 20px;
-            margin: 15px 0;
+            min-height: 25px;
+            margin: 18px 0;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .message.win {
-            color: #008000; 
+            color: #00A300; 
         }
 
         .message.lose {
-            color: #FF0000; 
+            color: #E00000; 
         }
 
         .score {
-            border-top: 1px solid #000000;
+            border-top: 2px dashed #444;
             padding-top: 10px;
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        .reset-btn {
+            background: linear-gradient(145deg, #2196F3, #1565C0);
             margin-top: 10px;
+        }
+
+        .reset-btn:hover {
+            background: linear-gradient(145deg, #42A5F5, #1976D2);
         }
     </style>
 </head>
@@ -83,19 +110,19 @@
     <div class="box">
         <h1>COIN FLIP SIMULATOR</h1>
 
-        <!-- Coin display -->
+        <!-- Coin-->
         <div class="coin" id="coin">?</div>
 
-        <!-- Guess buttons -->
+        <!-- Guessing button -->
         <div>
             <button id="headsBtn" onclick="doGuess('Heads')">HEADS</button>
             <button id="tailsBtn" onclick="doGuess('Tails')">TAILS</button>
         </div>
 
-        <!-- Result message -->
+        <!-- Result msg-->
         <div class="message" id="msg"></div>
 
-        <!-- Scoreboard -->
+        <!-- Scores -->
         <div class="score">
             <p>WINS: <span id="wins">0</span> | LOSSES: <span id="losses">0</span></p>
             <p>TOTAL: <span id="total">0</span></p>
@@ -111,7 +138,7 @@
         let losses = 0;
         let total = 0;
 
-        // DOM references
+        // DOM 
         const coin = document.getElementById('coin');
         const msg = document.getElementById('msg');
         const winsEl = document.getElementById('wins');
@@ -120,7 +147,7 @@
         const headsBtn = document.getElementById('headsBtn');
         const tailsBtn = document.getElementById('tailsBtn');
 
-        // Load saved stats immediately (page elements already exist)
+        // Loading saved stats 
         const savedWins = localStorage.getItem('wins');
         const savedLosses = localStorage.getItem('losses');
         const savedTotal = localStorage.getItem('total');
