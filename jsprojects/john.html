@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>hehehehehehe</title>
+    </head>
+    <body>
+        <p>BE MY BESTFRIEND?</p>
+        <button class="yes-button"
+        style="background-color: aquamarine;
+        color: #000;"
+        onclick="ychange();"        
+        >YES</button>
+        <button class="no-button"
+        style="background-color: aquamarine;
+        color: #000;"
+        onclick="nchange();" 
+        >NO</button>
+
+
+        <script>
+            function nchange(){
+                const nelement= document.querySelector('.no-button');
+                const yelement= document.querySelector('.yes-button');
+                if(nelement.innerText=== 'NO'){
+                    nelement.innerHTML='YES';
+                    yelement.innerHTML='NO';
+                }
+                else{
+                    document.body.innerHTML= 'LESSGOOOO WE BESTIES <3';
+                }
+                
+
+            }
+
+            function ychange(){
+                const nelement= document.querySelector('.no-button');
+                const yelement= document.querySelector('.yes-button');
+                if(yelement.innerText=== 'NO'){
+                    yelement.innerHTML='YES';
+                    nelement.innerHTML='NO';
+                }
+                else{
+                    document.body.innerHTML= 'LESSGOOOO WE BESTIES <3';
+                }
+                
+
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>choose?</title>
+        </head>
+        <body>
+            <p>ENTER THE OPTIONS</p>
+            <input type="text" placeholder="oh my option" class="option" onkeydown="if(event.key==='Enter'){addoption();}">
+            <button
+            onclick=" addoption();
+            ">add</button>
+            <button onclick="choice();">choose</button>
+            <div class="result"> </div>
+            <script>
+                let options=[];
+                function addoption(){
+                    let option=document.querySelector('.option');
+                    if(option.value.trim() === ""){
+                        alert("Please enter something!");
+                        return;
+                    }
+                    
+                    options.push(option.value);
+                    option.value = "";
+
+                    let html= `<p> ${options}</p>`;
+                    document.querySelector('.result').innerHTML= html;
+                }
+                function choice(){
+
+                    let n= options.length;
+                    if (n === 0) {
+                        alert("Add some options first!");
+                        return;
+                    }
+
+                    const idx = Math.floor(Math.random() * n);
+                    let html= `<p> You should ${options[idx]}</p>`;
+                    document.querySelector('.result').innerHTML= html;
+                }
+            </script>
+        </body>
+    </html>
