@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>todo</title>
+        <style>
+            body{
+                
+                display: grid;
+                
+            }
+            .todooutput,.todo-grid{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                column-gap: 5px;
+                row-gap: 20px;
+                margin-bottom: 20px;
+            }
+            .dele{
+                margin-right: 92px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1>TO-DO</h1>
+        <div class="todo-grid">
+        <input placeholder="enter" class="todo-input">
+        <input type="date" class="todo-date">
+        <input type="time" class="todo-time">
+        <button onclick="todorender();">Add</button>
+        </div>
+        <div class="todooutput"></div>
+
+        <script>
+            let todolist=[]
+            
+            function todorender(){
+                let todothingele= document.querySelector('.todo-input');
+                let todothing=todothingele.value.trim();
+                let todotime=document.querySelector('.todo-time').value;
+                let tododate=document.querySelector('.todo-date').value;
+                let todo={
+                    thing:todothing,
+                    date:tododate,
+                    time:todotime,
+                }
+                
+                if (todo.thing === "") return;
+                todolist.push(todo);
+                let innertodoHTML='';
+                todolist.forEach((todo,index) =>{
+                    let html= `
+                                    <div><strong>${todo.thing} </strong></div>
+                                    <div>📅${todo.date}</div>
+                                    <div>  ⏰${todo.time} </div>
+                                    <div><button class="dele" onclick="deletetodo(${index});"> Delete </button></div>
+                              `; 
+                    innertodoHTML+=html;
+                })
+                document.querySelector('.todooutput').innerHTML=innertodoHTML;
+                document.querySelector('.todo-input').value ='';
+                document.querySelector('.todo-date').value = '';
+                document.querySelector('.todo-time').value = '';
+            };
+
+            function deletetodo(index){
+                todolist.splice(index,1);
+                let innertodoHTML='';
+                todolist.forEach((todo,index) =>{
+                    let html=  `
+                                    <div><strong>${todo.thing} </strong></div>
+                                    <div>📅${todo.date}</div>
+                                    <div>  ⏰${todo.time} </div>
+                                    <div><button class="dele" onclick="deletetodo(${index});"> Delete </button></div>
+                             `; 
+                    innertodoHTML += html;
+                })
+                document.querySelector('.todooutput').innerHTML=innertodoHTML;
+            }
+        </script>
+    </body>
+</html>

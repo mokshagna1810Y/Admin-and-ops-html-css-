@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coin Flip</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ABE2, #5563DE);
+            color: #222;
+        }
+
+        .box {
+            background-color: #FFFFFFEE;
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #333;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #222;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #999;
+        }
+
+        .coin {
+            width: 90px;
+            height: 90px;
+            margin: 20px auto;
+            background: radial-gradient(circle, gold 30%, #e5b300 90%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            border: 3px solid #222;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+           
+        }
+
+        
+        button {
+            padding: 10px 18px;
+            font-size: 15px;
+            margin: 6px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(145deg, #4CAF50, #2E7D32);
+            color: white;
+            transition: 0.3s;
+        }
+
+        #tailsBtn {
+            background: linear-gradient(145deg, #FF5252, #C62828);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+        }
+
+        .message {
+            min-height: 25px;
+            margin: 18px 0;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .message.win {
+            color: #00A300; 
+        }
+
+        .message.lose {
+            color: #E00000; 
+        }
+
+        .score {
+            border-top: 2px dashed #444;
+            padding-top: 10px;
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        .reset-btn {
+            background: linear-gradient(145deg, #2196F3, #1565C0);
+            margin-top: 10px;
+        }
+
+        .reset-btn:hover {
+            background: linear-gradient(145deg, #42A5F5, #1976D2);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>COIN FLIP SIMULATOR</h1>
+
+        <!-- Coin-->
+        <div class="coin" id="coin">?</div>
+
+        <!-- Guessing button -->
+        <div>
+            <button id="headsBtn" onclick="doGuess('Heads')">HEADS</button>
+            <button id="tailsBtn" onclick="doGuess('Tails')">TAILS</button>
+        </div>
+
+        <!-- Result msg-->
+        <div class="message" id="msg"></div>
+
+        <!-- Scores -->
+        <div class="score">
+            <p>WINS: <span id="wins">0</span> | LOSSES: <span id="losses">0</span></p>
+            <p>TOTAL: <span id="total">0</span></p>
+        </div>
+
+        <!-- Reset button -->
+        <button onclick="clearStats()">RESET</button>
+    </div>
+
+    <script>
+        // Score variables
+        let wins = 0;
+        let losses = 0;
+        let total = 0;
+
+        // DOM 
+        const coin = document.getElementById('coin');
+        const msg = document.getElementById('msg');
+        const winsEl = document.getElementById('wins');
+        const lossesEl = document.getElementById('losses');
+        const totalEl = document.getElementById('total');
+        const headsBtn = document.getElementById('headsBtn');
+        const tailsBtn = document.getElementById('tailsBtn');
+
+        // Loading saved stats 
+        const savedWins = localStorage.getItem('wins');
+        const savedLosses = localStorage.getItem('losses');
+        const savedTotal = localStorage.getItem('total');
+
+        if (savedWins !== null) wins = parseInt(savedWins);
+        if (savedLosses !== null) losses = parseInt(savedLosses);
+        if (savedTotal !== null) total = parseInt(savedTotal);
+
+        updateStats();
+
+        // Randomly returns 'Heads' or 'Tails'
+        function getResult() {
+            return Math.random() < 0.5 ? 'Heads' : 'Tails';
+        }
+
+        // Main game function
+        function doGuess(userChoice) {
+            headsBtn.disabled = true;
+            tailsBtn.disabled = true;
+
+            msg.textContent = 'Flipping...';
+            msg.className = 'message';
+            coin.textContent = '?';
+
+            setTimeout(() => {
+                const result = getResult();
+                coin.textContent = result.charAt(0);
+
+                if (userChoice === result) {
+                    wins++;
+                    msg.textContent = `WIN! It was ${result}.`;
+                    msg.className = 'message win';
+                } else {
+                    losses++;
+                    msg.textContent = `LOSE. It was ${result}.`;
+                    msg.className = 'message lose';
+                }
+
+                total++;
+                updateStats();
+                saveStats();
+
+                headsBtn.disabled = false;
+                tailsBtn.disabled = false;
+            }, 1000);
+        }
+
+        // Update the scoreboard display
+        function updateStats() {
+            winsEl.textContent = wins;
+            lossesEl.textContent = losses;
+            totalEl.textContent = total;
+        }
+
+        // Save current stats to localStorage
+        function saveStats() {
+            localStorage.setItem('wins', wins);
+            localStorage.setItem('losses', losses);
+            localStorage.setItem('total', total);
+        }
+
+        // Reset all game stats
+        function clearStats() {
+            wins = 0;
+            losses = 0;
+            total = 0;
+            coin.textContent = '?';
+            msg.textContent = '';
+            msg.className = 'message';
+            updateStats();
+
+            localStorage.removeItem('wins');
+            localStorage.removeItem('losses');
+            localStorage.removeItem('total');
+        }
+    </script>
+</body>
+</html>
