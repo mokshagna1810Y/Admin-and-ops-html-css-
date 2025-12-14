@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <header>
+
+    </header>
+    <body>
+        <p>Quantity:<span class="value">0</span> <span class="Update" >Update</span> <span class="Delete">Delete</span></p>
+        <script>
+            let valueel= document.querySelector('.value');
+            let updateel= document.querySelector('.Update');
+
+            updateel.addEventListener('click',()=>{
+                if(updateel.textContent === "Update"){
+                document.querySelector('.value').innerHTML='<input class="qinput">';
+                document.querySelector('.Update').innerHTML="save";}
+                else{
+                    let val=document.querySelector('.qinput').value;
+                    document.querySelector('.value').innerHTML=val;
+                    document.querySelector('.Update').innerHTML="Update";}
+                }
+            )
+            
+            
+        </script>
+    </body>
+</html>
