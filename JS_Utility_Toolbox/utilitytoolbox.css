@@ -1,0 +1,96 @@
+body{
+    display:flex;
+    margin: 30px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .texta {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .texta,
+    .tempc {
+        flex: 1;
+    }
+}
+
+
+.texta{
+    border: 2px solid black;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    padding-right: 100px;
+    flex: 1; 
+    border-radius: 7px;
+    margin-right: 15px;
+
+}   
+
+.tempc{
+    border: 2px solid black;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    padding-right: 100px;
+    flex:0 0 50%; 
+    border-radius: 7px;
+    margin-right: 15px;
+    
+
+}  
+
+.calc{
+    border: 2px solid black;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    padding-right: 100px;
+    flex: 1; 
+    border-radius: 7px;
+    margin-right: 15px;
+    
+}
+
+.passw{
+    border: 2px solid black;
+    padding-left: 15px;
+    padding-right: 100px;
+    flex: 1; 
+    border-radius: 7px;
+    margin-right: 15px;
+    
+
+}
+
+.quote{
+    border: 2px solid black;
+    padding-left: 15px;
+    padding-right: 100px;
+    padding-bottom: 30px;
+    flex:0 0 50%; 
+    border-radius: 7px;
+    margin-right: 15px;
+    margin-top: 30px;
+    
+}
+
+
+.calc,.passw{
+    margin-top: 30px;
+}
+
+.buttons,.resetcalc,.resettemp,.reset,.resetpass{
+    margin-top: 7px;
+}
+
+.main-heading{
+    margin-bottom: 50px;
+    display: block;
+}
+

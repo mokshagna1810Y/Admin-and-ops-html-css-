@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+            <link rel="stylesheet" href="utilitytoolbox.css">
+            <title>Utility Toolbox</title>
+    </head>
+    <body>
+
+       <div class="texta" >
+            <h2>
+                TEXT ANALYZER
+            </h2>
+            <input placeholder="enter your sentence" class="inele">
+            <button class="submit">submit</button>
+            <div class="result"></div>
+            <button class="reset" onclick="
+            document.querySelector('.result').innerHTML='';">Reset</button>
+        </div>
+
+        <div class="tempc">
+            <h2>
+                TEMPERATURE CONVERTER 
+            </h2>
+            <h3>
+                (C->F or F->C)
+            </h3>
+            <input placeholder="enter the temp" class="intemp">
+            <input placeholder="enter the scale" class="inscale">
+            <button class="submittemp">submit</button>
+            <div class="resulttemp"></div>
+            <button class="resettemp" onclick="
+            document.querySelector('.resulttemp').innerHTML='';">Reset</button>
+        </div>
+
+        <div class="calc">
+            <h1>
+                CALCULATOR
+            </h1>
+            <input placeholder="enter the num1" class="num1">
+            <input placeholder="enter the num2" class="num2">
+            
+            
+            <div class="buttons">
+                <button data-op="add">+</button>
+                <button data-op="sub">-</button>
+                <button data-op="mul">x</button>
+                <button data-op="div">÷</button>
+            
+                <button data-op="pow">xʸ</button>
+                <button data-op="sqrt">√x</button>
+                <button data-op="mod">%</button>
+            </div>
+                
+            
+            <div class="resultcalc"></div>
+            <button class="resetcalc" onclick="
+            document.querySelector('.resultcalc').innerHTML='';">Reset</button>
+        </div>
+
+        <div class="passw">
+            <h1>PASSWORD STRENGTH</h1>
+            <input type="password" placeholder="Enter password" class="inpass">
+            <button class="submitpass">Check</button>
+            <div class="resultpass"></div>
+            <button class="resetpass" onclick="
+            document.querySelector('.resultpass').innerHTML='';">Reset</button>
+        </div>
+        
+        <div class="quote">
+            <h1>QUOTE GENERATOR</h1>
+            <button class="generate">Generate</button>
+            <div class="randomq"></div>
+            <button class="resetpass" onclick="
+            document.querySelector('.randomq').innerHTML='';">Reset</button>
+        </div>
+        
+    </body>
+    <script type="module" src="js-files/utilitytoolbox.js"></script>
+</html>
