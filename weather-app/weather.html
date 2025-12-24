@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>weather app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="weather.css">
+</head>
+<body>
+    <div class="card">
+
+        <div class="search">
+            <input placeholder="Enter the city" class="cityin">
+            <button class="searchbut">search</button>
+            <div class="suggestions"></div>
+        </div>
+
+        <div class="weather">
+            <img src="./images/clouds.png" class="weather-img">
+            <h2 class="weather-upd">temp°C</h2>
+            <h1 class="place">Place</h1>
+        </div>
+
+        <div class="others">
+            <div class="humidity">
+                <img src="./images/humidity.png">
+                <h1 class="weather-hum"></h1>
+                <h2>humidity</h2>
+            </div>
+            <div class="windspeed">
+                <img src="./images/wind.png">
+                <h1 class="weather-sp"></h1>
+                <h2>windspeed</h2>
+            </div>
+        </div>
+
+        <!-- Hourly Forecast -->
+        <div class="hourly">
+            <h3>Hourly Forecast</h3>
+            <div class="hourly-row"></div>
+        </div>
+
+    </div>
+
+    <script src="weather.js"></script>
+</body>
+</html>
