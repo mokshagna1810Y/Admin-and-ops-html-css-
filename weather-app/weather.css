@@ -174,3 +174,24 @@ img {
 .suggestions div:hover {
     background: #f0f0f0;
 }
+.unit-toggle {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.unit-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.unit-btn.active {
+    background: white;
+    color: #0a1a2f;
+    font-weight: 600;
+}

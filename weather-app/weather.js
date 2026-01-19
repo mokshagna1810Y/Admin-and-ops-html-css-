@@ -1,7 +1,11 @@
 let searchbutton = document.querySelector('.searchbut');
-const cityInput = document.querySelector('.cityin');   // ✅ needed for suggestions
+const cityInput = document.querySelector('.cityin');
 const suggestionsBox = document.querySelector('.suggestions');
 const APIkey = "3344832fbc24294f39bfce7c492eb259";
+
+/* 🔥 TEMP TOGGLE STATE (ADDED) */
+let currentTempC = null;
+let currentUnit = "c";
 
 searchbutton.addEventListener('click', checkweather);
 
@@ -34,12 +38,13 @@ async function checkweather() {
 
     const current = data.list[0];
 
-    // current weather UI
     setimage(current);
 
     document.querySelector('.place').innerHTML = data.city.name;
-    document.querySelector('.weather-upd').innerHTML =
-        Math.round(current.main.temp) + "°C";
+
+    /* 🔥 STORE TEMP + UPDATE DISPLAY */
+    currentTempC = current.main.temp;
+    updateTemp();
 
     document.querySelector('.weather-sp').innerHTML =
         Math.round(current.wind.speed * 3.6) + " km/h";
@@ -55,20 +60,13 @@ async function checkweather() {
 
 function setimage(item){
     const weatherImg = document.querySelector('.weather-img');
-
     const main = item.weather[0].main.toLowerCase();
 
-    if (main === "clear") {
-        weatherImg.src = "./images/sun.png";
-    } else if (main === "clouds") {
-        weatherImg.src = "./images/clouds.png";
-    } else if (main === "rain" || main === "drizzle") {
-        weatherImg.src = "./images/rainy.png";
-    } else if (main === "snow") {
-        weatherImg.src = "./images/snow.png";
-    } else {
-        weatherImg.src = "./images/clouds.png";
-    }
+    if (main === "clear") weatherImg.src = "./images/sun.png";
+    else if (main === "clouds") weatherImg.src = "./images/clouds.png";
+    else if (main === "rain" || main === "drizzle") weatherImg.src = "./images/rainy.png";
+    else if (main === "snow") weatherImg.src = "./images/snow.png";
+    else weatherImg.src = "./images/clouds.png";
 }
 
 function renderHourly(data) {
@@ -95,7 +93,7 @@ function renderHourly(data) {
     });
 }
 
-/* ================= AUTOCOMPLETE (ONLY NEW PART) ================= */
+/* ================= AUTOCOMPLETE ================= */
 
 cityInput.addEventListener('input', async () => {
     const query = cityInput.value.trim();
@@ -122,5 +120,30 @@ cityInput.addEventListener('input', async () => {
         });
 
         suggestionsBox.appendChild(div);
+    });
+});
+
+/* ================= TEMP TOGGLE LOGIC (ADDED) ================= */
+
+function updateTemp() {
+    const tempEl = document.querySelector('.weather-upd');
+
+    if (currentUnit === "c") {
+        tempEl.innerHTML = Math.round(currentTempC) + "°C";
+    } else {
+        tempEl.innerHTML =
+            Math.round((currentTempC * 9) / 5 + 32) + "°F";
+    }
+}
+
+/* buttons already exist in HTML */
+document.querySelectorAll('.unit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.unit-btn')
+            .forEach(b => b.classList.remove('active'));
+
+        btn.classList.add('active');
+        currentUnit = btn.dataset.unit;
+        updateTemp();
     });
 });

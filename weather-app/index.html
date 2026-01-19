@@ -16,7 +16,15 @@
 
         <div class="weather">
             <img src="./images/clouds.png" class="weather-img">
+
             <h2 class="weather-upd">temp°C</h2>
+
+            <!-- 🔥 TEMP TOGGLE (ADDED) -->
+            <div class="unit-toggle">
+                <button class="unit-btn active" data-unit="c">°C</button>
+                <button class="unit-btn" data-unit="f">°F</button>
+            </div>
+
             <h1 class="place">Place</h1>
         </div>
 
@@ -33,7 +41,6 @@
             </div>
         </div>
 
-        <!-- Hourly Forecast -->
         <div class="hourly">
             <h3>Hourly Forecast</h3>
             <div class="hourly-row"></div>
